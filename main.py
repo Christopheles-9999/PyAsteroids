@@ -25,6 +25,12 @@ def main():
 			# statement on game, v/
 				# states out height of 720
 
+	clock = pygame.time.Clock()
+			# builds a clock constructor off of the sub-module of time within the module of pygame
+			# captured within the variable of [clock]
+	dt = 0
+			# creates a variable for recording frames that have occured, "delta time", or "change of time"
+
 
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 			# defines screen size of game, per above references and statements
@@ -49,6 +55,10 @@ def main():
 						# black , no special size, no special flag
 						# https://www.pygame.org/docs/ref/surface.html#pygame.Surface.fill <~ reff
 		
+
+		dt = clock.tick(60) / 1000
+				# creates a time notation to process loops at 1/60th of a millisecond
+
 
 		pygame.display.flip()
 				# calls a refresh of the renderer, infinitely unless an event occurs to stop

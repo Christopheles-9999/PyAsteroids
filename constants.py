@@ -10,3 +10,6 @@ ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
 
 PLAYER_TURN_SPEED = 300
         # value for player rotation speed
+
+PLAYER_SPEED = 200
+        # value for player forward/backward movement speed

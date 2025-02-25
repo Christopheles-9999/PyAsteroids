@@ -42,6 +42,13 @@ def main():
 			# defines screen size of game, per above references and statements
 
 
+	updateable = pygame.sprite.Group()
+	drawable = pygame.sprite.Group()
+			# groups to house objects that fall under update() & draw() methods
+	Player.containers = (updateable, drawable)
+			# applies the Player class to the 2 groups via container property
+
+
 	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 			# defines where the player should spawn in relation to the screen
 
@@ -66,12 +73,18 @@ def main():
 						# https://www.pygame.org/docs/ref/surface.html#pygame.Surface.fill <~ reff
 		
 
-		player.update(dt)
+		# player.update(dt)
+					# disabling to reference instead with Groups
+		updateable.update(dt)
 				# method call to refresh the movement of the player character based on key pressed
 
 
-		player.draw(screen)
-				# places the player into the render
+		# player.draw(screen)
+					# disabling to reference instead with Groups							
+
+		for thing in drawable:
+			thing.draw(screen)
+					# places the player into the render
 		
 
 		dt = clock.tick(60) / 1000

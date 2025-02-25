@@ -40,3 +40,20 @@ class Player(CircleShape):
         if keys[pygame.K_d]:
             self.rotate(dt)
                     # if key a is pressed, rotate player character clockwise by value
+
+        if keys[pygame.K_s]:
+            self.move(-dt)
+                    # if key a is pressed, move character ship in negative momentum based on dt value
+                        # utilizes move()
+
+        if keys[pygame.K_w]:
+            self.move(dt)
+                    # if key a is pressed, move character ship in positive momentum based on dt value
+                        # utilizes move()
+
+
+    def move(self, dt):
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+                # logic for creating forward movement within game for player object shape/model
+        self.position += forward * PLAYER_SPEED * dt
+                # logic for how to adjust position based on that movement value provided

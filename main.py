@@ -1,7 +1,10 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame, constants 									
+import pygame
+from player import Player
+import circleshape					
+# import constants				
 		# imports from modules for use in main.py
 from constants import *										
 		# states what to import from what module
@@ -17,13 +20,14 @@ def main():
 	print(f"Starting Asteroids!")
 			# statement on game, v/
 
-	print(f"Screen width: {constants.SCREEN_WIDTH}")
+	print(f"Screen width: {SCREEN_WIDTH}")
 			# statement on game, v/
 				# states out width of 1280
 
-	print(f"Screen height: {constants.SCREEN_HEIGHT}")
+	print(f"Screen height: {SCREEN_HEIGHT}")
 			# statement on game, v/
 				# states out height of 720
+
 
 	clock = pygame.time.Clock()
 			# builds a clock constructor off of the sub-module of time within the module of pygame
@@ -34,6 +38,10 @@ def main():
 
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 			# defines screen size of game, per above references and statements
+
+
+	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+			# defines where the player should spawn in relation to the screen
 
 
 	while True:
@@ -55,6 +63,10 @@ def main():
 						# black , no special size, no special flag
 						# https://www.pygame.org/docs/ref/surface.html#pygame.Surface.fill <~ reff
 		
+
+		player.draw(screen)
+				# places the player into the render
+
 
 		dt = clock.tick(60) / 1000
 				# creates a time notation to process loops at 1/60th of a millisecond

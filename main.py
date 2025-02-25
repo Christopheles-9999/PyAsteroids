@@ -2,14 +2,16 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from player import Player
-import circleshape					
+from player import *
+from circleshape import *				
 # import constants				
 		# imports from modules for use in main.py
-from constants import *										
+from constants import *
 		# states what to import from what module
 		# using * denotes all datasets that exist in that module
 			# similar to SQL in coding~
+
+
 
 def main():
 		# core function
@@ -64,9 +66,13 @@ def main():
 						# https://www.pygame.org/docs/ref/surface.html#pygame.Surface.fill <~ reff
 		
 
+		player.update(dt)
+				# method call to refresh the movement of the player character based on key pressed
+
+
 		player.draw(screen)
 				# places the player into the render
-
+		
 
 		dt = clock.tick(60) / 1000
 				# creates a time notation to process loops at 1/60th of a millisecond

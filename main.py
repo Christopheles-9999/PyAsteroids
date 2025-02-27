@@ -2,7 +2,9 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+from asteroid import *
 from player import *
+from asteroidfield import *
 from circleshape import *				
 # import constants				
 		# imports from modules for use in main.py
@@ -45,12 +47,24 @@ def main():
 	updateable = pygame.sprite.Group()
 	drawable = pygame.sprite.Group()
 			# groups to house objects that fall under update() & draw() methods
+	asteroids = pygame.sprite.Group()
+			# group to house the asteroids generated through asteroid.py file & class/methods
+	
+
 	Player.containers = (updateable, drawable)
 			# applies the Player class to the 2 groups via container property
-
+	
+	Asteroid.containers = (asteroids, updateable, drawable)
+			# applies the Asteroid class to the 2 groups via container property
+	
+	AsteroidField.containers = (updateable,)
+			# applies to the AsteroidField class, which is not repeat drawn & is not an Asteroid, but a fixed field that is updated
+	
 
 	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 			# defines where the player should spawn in relation to the screen
+
+	asteroid_field = AsteroidField()
 
 
 	while True:
@@ -73,23 +87,24 @@ def main():
 						# https://www.pygame.org/docs/ref/surface.html#pygame.Surface.fill <~ reff
 		
 
+
+		dt = clock.tick(60) / 1000
+				# creates a time notation to process loops at 1/60th of a millisecond
+		
 		# player.update(dt)
 					# disabling to reference instead with Groups
 		updateable.update(dt)
 				# method call to refresh the movement of the player character based on key pressed
+		#			# print(f"Number of asteroids: {len(asteroids)}")
+				# q?^^ ~ troubleshooting why asteroids are not visibly spawning on screen
 
 
 		# player.draw(screen)
 					# disabling to reference instead with Groups							
-
 		for thing in drawable:
 			thing.draw(screen)
 					# places the player into the render
 		
-
-		dt = clock.tick(60) / 1000
-				# creates a time notation to process loops at 1/60th of a millisecond
-
 
 		pygame.display.flip()
 				# calls a refresh of the renderer, infinitely unless an event occurs to stop

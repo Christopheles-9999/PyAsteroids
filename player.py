@@ -5,6 +5,8 @@ from circleshape import CircleShape
 class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x,y,PLAYER_RADIUS)
+                # inherets build logic from CircleShape, for x y and PLAYER_RADIUS
+                
         self.rotation = 0
                 # defines the object boundaries of the player "character"
 

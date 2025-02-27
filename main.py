@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from asteroid import *
 from player import *
 from asteroidfield import *
@@ -98,12 +99,26 @@ def main():
 		#			# print(f"Number of asteroids: {len(asteroids)}")
 				# q?^^ ~ troubleshooting why asteroids are not visibly spawning on screen
 
-
 		# player.draw(screen)
 					# disabling to reference instead with Groups							
 		for thing in drawable:
 			thing.draw(screen)
 					# places the player into the render
+
+		for asteroid in asteroids:
+				# ! goal is to check if the Player is colliding with Asteroids as they generate
+					# uses a for Loop to iterate each item that exists within the asteroids group
+						# defined above within main.py
+
+			if player.collisions(asteroid):
+					# defines a check using the player variable, with the collisions method, against asteroid instance
+						# the method itself can only return a True or False as part of its code
+				
+				# action defined to occur if True is returned
+				print("Game over!")
+						# generates in the console
+				sys.exit()
+						# trigger closing of the game
 		
 
 		pygame.display.flip()

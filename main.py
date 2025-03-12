@@ -46,11 +46,13 @@ def main():
 
 
 	updateable = pygame.sprite.Group()
+			# defines for sprites that need to be updated
 	drawable = pygame.sprite.Group()
 			# groups to house objects that fall under update() & draw() methods
 	asteroids = pygame.sprite.Group()
 			# group to house the asteroids generated through asteroid.py file & class/methods
-	
+	shots = pygame.sprite.Group()
+			# group to house the shots fired from player ship
 
 	Player.containers = (updateable, drawable)
 			# applies the Player class to the 2 groups via container property
@@ -60,6 +62,8 @@ def main():
 	
 	AsteroidField.containers = (updateable,)
 			# applies to the AsteroidField class, which is not repeat drawn & is not an Asteroid, but a fixed field that is updated
+
+	Shot.containers = (updateable, drawable, shots)
 	
 
 	player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -94,7 +98,9 @@ def main():
 		
 		# player.update(dt)
 					# disabling to reference instead with Groups
-		updateable.update(dt)
+		
+		for updatez in updateable:
+			updatez.update(dt)
 				# method call to refresh the movement of the player character based on key pressed
 		#			# print(f"Number of asteroids: {len(asteroids)}")
 				# q?^^ ~ troubleshooting why asteroids are not visibly spawning on screen

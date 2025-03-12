@@ -9,6 +9,7 @@ class CircleShape(pygame.sprite.Sprite):
         
         if hasattr(self, "containers"):
             super().__init__(self.containers)
+                # ? hasattr = hasAttribute
         
         else:
             super().__init__()
